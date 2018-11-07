@@ -3,14 +3,19 @@
  * https://github.com/markuswind/react-native-select-input
  */
 
-import AbstractSelectInput from './AbstractSelectInput.js';
-import PickerKeyboard from './../PickerKeyboard.js';
+import AbstractSelectInput from "./AbstractSelectInput.js";
+import PickerKeyboard from "./../PickerKeyboard.js";
 
-import styles from './../../stylesheets/selectInputIOS.css.js';
+import styles from "./../../stylesheets/selectInputIOS.css.js";
 
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Text, TouchableWithoutFeedback, View, ViewPropTypes } from 'react-native';
+import PropTypes from "prop-types";
+import React from "react";
+import {
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  ViewPropTypes
+} from "react-native";
 
 class SelectInput extends AbstractSelectInput {
   constructor(props) {
@@ -49,12 +54,14 @@ class SelectInput extends AbstractSelectInput {
             adjustFontSizeToFit={true}
             allowFontScaling={false}
             numberOfLines={1}
-            >
+          >
             {this.getValueLabel()}
           </Text>
 
           <PickerKeyboard
-            ref={(c) => { this.pickerKeyboard = c; }}
+            ref={c => {
+              this.pickerKeyboard = c;
+            }}
             options={props.options}
             value={props.value}
             onCancel={this.onCancel.bind(this)}
@@ -66,6 +73,8 @@ class SelectInput extends AbstractSelectInput {
             buttonsTextSize={props.buttonsTextSize}
             keyboardBackgroundColor={props.keyboardBackgroundColor}
             submitKeyText={props.submitKeyText}
+            submitButton={props.submitButton}
+            label={props.label}
             cancelKeyText={props.cancelKeyText}
           />
         </View>
@@ -75,32 +84,35 @@ class SelectInput extends AbstractSelectInput {
 }
 
 SelectInput.propTypes = {
-  buttonsBackgroundColor:  PropTypes.string,
-  buttonsBorderColor:      PropTypes.string,
-  buttonsBorderWidth:      PropTypes.number,
-  buttonsTextColor:        PropTypes.string,
-  buttonsTextSize:         PropTypes.number,
-  cancelKeyText:           PropTypes.string,
+  buttonsBackgroundColor: PropTypes.string,
+  buttonsBorderColor: PropTypes.string,
+  buttonsBorderWidth: PropTypes.number,
+  buttonsTextColor: PropTypes.string,
+  buttonsTextSize: PropTypes.number,
+  cancelKeyText: PropTypes.string,
   keyboardBackgroundColor: PropTypes.string,
-  labelStyle:              PropTypes.any , // FIXME: - use real proptype
-  onEndEditing:            PropTypes.func,
-  onSubmitEditing:         PropTypes.func,
-  options:                 PropTypes.array,
-  submitKeyText:           PropTypes.string,
-  style:                   PropTypes.oneOfType([ViewPropTypes.style, PropTypes.arrayOf(ViewPropTypes.style)]),
-  value:                   PropTypes.any,
+  labelStyle: PropTypes.any, // FIXME: - use real proptype
+  onEndEditing: PropTypes.func,
+  onSubmitEditing: PropTypes.func,
+  options: PropTypes.array,
+  submitKeyText: PropTypes.string,
+  style: PropTypes.oneOfType([
+    ViewPropTypes.style,
+    PropTypes.arrayOf(ViewPropTypes.style)
+  ]),
+  value: PropTypes.any
 };
 
 SelectInput.defaultProps = {
-  cancelKeyText:           'Cancel',
-  keyboardBackgroundColor: '#FFFFFF',
-  buttonsBackgroundColor:  '#CCCFD6',
-  buttonsTextColor:        '#006BFF',
-  buttonsBorderColor:      '#CCCFD6',
-  buttonsBorderWidth:      0,
-  options:                 [{ value: 0, label: '0' }],
-  submitKeyText:           'Done',
-  value:                   0,
+  cancelKeyText: "Cancel",
+  keyboardBackgroundColor: "#FFFFFF",
+  buttonsBackgroundColor: "#CCCFD6",
+  buttonsTextColor: "#006BFF",
+  buttonsBorderColor: "#CCCFD6",
+  buttonsBorderWidth: 0,
+  options: [{ value: 0, label: "0" }],
+  submitKeyText: "Done",
+  value: 0
 };
 
 export default SelectInput;

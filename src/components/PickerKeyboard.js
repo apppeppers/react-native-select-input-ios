@@ -3,15 +3,13 @@
  * https://github.com/markuswind/react-native-select-input
  */
 
-import CustomKeyboard from './CustomKeyboard.js';
-import styles from './../stylesheets/pickerKeyboard.css.js';
+import CustomKeyboard from "./CustomKeyboard.js";
+import styles from "./../stylesheets/pickerKeyboard.css.js";
 
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 
-import {
-  Picker,
-} from 'react-native';
+import { Picker } from "react-native";
 
 class PickerKeyboard extends Component {
   constructor(props) {
@@ -23,7 +21,7 @@ class PickerKeyboard extends Component {
     // initial state
     this.state = {
       value: props.value,
-      visible: false,
+      visible: false
     };
   }
 
@@ -82,26 +80,30 @@ class PickerKeyboard extends Component {
         onCancelPress={this.onCancelPress.bind(this)}
         onSubmitPress={this.onSubmitPress.bind(this)}
         submitKeyText={props.submitKeyText}
+        submitButton={props.submitButton}
+        label={props.label}
         visible={this.state.visible}
-        >
+      >
         <Picker
-          ref={(c) => { this.picker = c; }}
+          ref={c => {
+            this.picker = c;
+          }}
           selectedValue={state.value}
           onValueChange={this.onValueChange.bind(this)}
           style={[
             styles.pickerview,
             { backgroundColor: props.keyboardBackgroundColor }
           ]}
-          >
-            {props.options.map((option, index) => {
-              return (
-                <Picker.Item
-                  key={option.value}
-                  value={option.value}
-                  label={option.label}
-                />
-              );
-            })}
+        >
+          {props.options.map((option, index) => {
+            return (
+              <Picker.Item
+                key={option.value}
+                value={option.value}
+                label={option.label}
+              />
+            );
+          })}
         </Picker>
       </CustomKeyboard>
     );
@@ -110,17 +112,17 @@ class PickerKeyboard extends Component {
 
 PickerKeyboard.propTypes = {
   buttonsBackgroundColor: PropTypes.string,
-  buttonsBorderColor:     PropTypes.string,
-  buttonsBorderWidth:     PropTypes.number,
-  buttonsTextColor:       PropTypes.string,
-  buttonsTextSize:        PropTypes.number,
-  cancelKeyText:          PropTypes.string,
-  onCancel:               PropTypes.func,
-  onSubmit:               PropTypes.func,
-  options:                PropTypes.array,
-  style:                  PropTypes.object,
-  submitKeyText:          PropTypes.string,
-  value:                  PropTypes.any,
+  buttonsBorderColor: PropTypes.string,
+  buttonsBorderWidth: PropTypes.number,
+  buttonsTextColor: PropTypes.string,
+  buttonsTextSize: PropTypes.number,
+  cancelKeyText: PropTypes.string,
+  onCancel: PropTypes.func,
+  onSubmit: PropTypes.func,
+  options: PropTypes.array,
+  style: PropTypes.object,
+  submitKeyText: PropTypes.string,
+  value: PropTypes.any
 };
 
 export default PickerKeyboard;
