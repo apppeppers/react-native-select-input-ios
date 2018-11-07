@@ -3,13 +3,17 @@
  * https://github.com/markuswind/react-native-select-input
  */
 
-import KeyboardButton from "./KeyboardButton.js";
 import styles from "./../stylesheets/customKeyboard.css.js";
 
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 
-import { Modal, TouchableWithoutFeedback, View } from "react-native";
+import {
+  Modal,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+  View
+} from "react-native";
 
 class CustomKeyboard extends Component {
   constructor(props) {
@@ -39,7 +43,9 @@ class CustomKeyboard extends Component {
             <View style={styles.modal}>
               <View style={[styles.buttonview, buttonsViewStyles]}>
                 {props.label}
-                {props.submitButton}
+                <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
+                  {props.submitButton}
+                </TouchableOpacity>
               </View>
 
               <View>{props.children}</View>
